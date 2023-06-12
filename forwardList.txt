@@ -1,0 +1,28 @@
+#include<iostream>
+#include<forward_list>
+#include<stdio.h>
+using namespace std;
+
+void display(forward_list<int> &fdList){
+	for(auto it=fdList.begin();it!=fdList.end();it++){
+		cout<<*it<<" ";
+	}
+	cout<<endl;
+}
+
+int main(){
+	forward_list<int> fwdList;
+	//push_front -> push element in the front of singly linkedlist
+	//there is no function called push_back in forward list
+	fwdList.push_front(1);
+	fwdList.push_front(2);
+	fwdList.push_front(3);
+
+	//insert_after -> its used to insert an element after an existing element(pointer to existing element should be provided as first parameter as shown below)
+	fwdList.insert_after(fwdList.begin(), 4);
+	auto it=fwdList.begin();
+	it++;
+	fwdList.insert_after(it, 5);
+	display(fwdList);
+	return 0;
+}
