@@ -1,0 +1,57 @@
+#include<iostream>
+#include<stdio.h>
+#include<queue>
+using namespace std;
+
+/*struct A{
+	int firstEle;
+	int secondEle;
+};*/
+
+struct comp{
+	bool operator()(pair<int,int> a, pair<int,int> b){
+		if(a.second==b.second)
+			return a.first<b.first;
+		return a.second>b.second; 
+	}
+};
+
+struct compVec{
+	bool operator()(pair<int, int> a, pair<int, int> b){{
+		if(a.second==b.second)
+			return a.first<b.first;
+		return a.second>b.second;
+
+	}
+};
+
+int main(){
+	priority_queue<pair<int,int>, vector<pair<int,int>>, comp> pq;
+	pq.push(make_pair(1,5));
+	pq.push(make_pair(3,7));
+	pq.push(make_pair(14,25));
+	pq.push(make_pair(12,17));
+	pq.push(make_pair(2,18));	
+	pq.push(make_pair(3,18));
+	pq.push(make_pair(4,18));
+	cout<<"Content of pq:"<<"\n";
+	while(!pq.empty()){
+		cout<<pq.top().first<<" "<<pq.top().second<<"\n";
+		pq.pop();
+	}
+
+	vector<pair<int,int>> vec;
+	vec.push_back(make_pair(1,5));
+	vec.push_back(make_pair(3,7));
+	vec.push_back(make_pair(14,25));
+	vec.push_back(make_pair(12,17));
+	vec.push_back(make_pair(2,18));
+	vec.push_back(make_pair(3,18));
+	vec.push_back(make_pair(4,18));
+	sort(vec.begin(), vec.end(), compVec);
+	cout<<"Content of vector: "<<"\n";
+	for(int i=0;i<vec.size();i++){
+		cout<<vec[i].first<<" "<<vec[i].second<<"\n";
+	}
+	return 0;
+}
